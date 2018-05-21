@@ -1,0 +1,143 @@
+语法:
+import re #导入模块名
+
+p = re.compile("^[0-9]")  #生成要匹配的正则对象 ， ^代表从开头匹配，[0-9]代表匹配0至9的任意一个数字， 所以这里的意思是对传进来的字符串进行匹配，如果这个字符串的开头第一个字符是数字，就代表匹配上了
+
+m = p.match('14534Abc')   #按上面生成的正则对象 去匹配 字符串， 如果能匹配成功，这个m就会有值， 否则m为None<br /><br />if m: #不为空代表匹配上了
+　　print(m.group())　　　　#m.group()返回匹配上的结果，此处为1，因为匹配上的是1这个字符<br />else:<br />　　print("doesn't match.")<br />
+
+上面的第2 和第3行也可以合并成一行来写
+
+m = p.match("^[0-9]",'14534Abc') 
+
+效果是一样的，区别在于，第一种方式是提前对要匹配的格式进行了编译（对匹配公式进行解析），这样再去匹配的时候就不用在编译匹配的格式，第2种简写是每次匹配的时候 都 要进行一次匹配公式的编译，所以，如果你需要从一个5w行的文件中匹配出所有以数字开头的行，建议先把正则公式进行编译再匹配，这样速度会快点。
+
+
+匹配格式
+模式                  描述
+^                    匹配字符串的开头
+$                     匹配字符串的末尾。
+.                      匹配任意字符，除了换行符，当re.DOTALL标记被指定时，则可以匹配包括换行符的任意字符。
+[...]                   用来表示一组字符,单独列出：[amk] 匹配 'a'，'m'或'k'
+[^...]               不在[]中的字符：[^abc] 匹配除了a,b,c之外的字符。
+re*                          匹配0个或多个的表达式。
+re+                  匹配1个或多个的表达式。
+re?                 匹配0个或1个由前面的正则表达式定义的片段，非贪婪方式
+re{ n}              精确匹配n个前面表达式。
+re{ n, m}            匹配 n 到 m 次由前面的正则表达式定义的片段，贪婪方式
+a| b                    匹配a或b
+(re)                 G匹配括号内的表达式，也表示一个组
+(?imx)           正则表达式包含三种可选标志：i, m, 或 x 。只影响括号中的区域。
+(?-imx)          正则表达式关闭 i, m, 或 x 可选标志。只影响括号中的区域。
+(?: re)         类似 (...), 但是不表示一个组
+(?imx: re)          在括号中使用i, m, 或 x 可选标志
+(?-imx: re)         在括号中不使用i, m, 或 x 可选标志
+(?#...)             注释.
+(?= re)             前向肯定界定符。如果所含正则表达式，以 ... 表示，在当前位置成功匹配时成功，否则失败。但一旦所含表达式已经尝试，匹配引擎根本没有提高；模式的剩余部分还要尝试界定符的右边。
+(?! re)         前向否定界定符。与肯定界定符相反；当所含表达式不能在字符串当前位置匹配时成功
+(?&gt; re)          匹配的独立模式，省去回溯。
+\w          匹配字母数字
+\W          匹配非字母数字
+\s         匹配任意空白字符，等价于 [\t\n\r\f].
+\S        匹配任意非空字符
+\d         匹配任意数字，等价于 [0-9].
+\D        匹配任意非数字匹配字符串开始
+\Z          匹配字符串结束，如果是存在换行，只匹配到换行前的结束字符串。c</td>
+\z           匹配字符串结束
+\G        匹配最后匹配完成的位置。
+\b          匹配一个单词边界，也就是指单词和空格间的位置。例如， 'er\b' 可以匹配"never" 中的 'er'，但不能匹配 "verb" 中的 'er'。
+\B             匹配非单词边界。'er\B' 能匹配 "verb" 中的 'er'，但不能匹配 "never" 中的 'er'。
+\n, \t, 等.           匹配一个换行符。匹配一个制表符。等
+\1...\9             匹配第n个分组的子表达式。
+\10                 匹配第n个分组的子表达式，如果它经匹配。否则指的是八进制字符码的表达式。
+
+正则表达式常用5种操作
+re.match(pattern, string)　　　　# 从头匹配
+re.search(pattern, string)　　　　#匹配整个字符串，直到找到一个匹配
+re.split()　　　　　　　　　　　　# 将匹配到的格式当做分割点对字符串分割成列表
+
+m = re.split("[0-9]", "alex1rain2jack3helen rachel8")
+print(m)
+输出：　['alex', 'rain', 'jack', 'helen rachel', '']
+re.findall()　　　　　　　　　　# 找到所有要匹配的字符并返回列表格式
+m = re.findall("[0-9]", "alex1rain2jack3helen rachel8")
+print(m)
+输出：['1', '2', '3', '8']
+re.sub(pattern, repl, string, count,flag)　　　# 替换匹配到的字符
+m=re.sub("[0-9]","|", "alex1rain2jack3helen rachel8",count=2 )
+print(m)
+输出：alex|rain|jack3helen rachel8　　
+正则表达式实例
+字符匹配
+实例         描述
+python    匹配 "python".
+字符类
+
+实例            描述
+[Pp]ython        匹配  "Python" 或 "python"
+rub[ye]           匹配 "ruby" 或 "rube"
+[aeiou]         匹配中括号内的任意一个字母
+[0-9]        匹配任何数字。类似于 [0123456789]
+ [a-z]        匹配任何小写字母
+[A-Z]          匹配任何大写字母
+[a-zA-Z0-9]           匹配任何字母及数字
+[^aeiou]         除了aeiou字母以外的所有字符
+[^0-9]          匹配除了数字外的字符
+特殊字符类
+实例              描述 
+ .             匹配除 "\n" 之外的任何单个字符。要匹配包括 '\n' 在内的任何字符，请使用象 '[.\n]' 的模式。 
+ \d            匹配一个数字字符。等价于 [0-9]。 
+ \D             匹配一个非数字字符。等价于 [^0-9]。 
+ \s            匹配任何空白字符，包括空格、制表符、换页符等等。等价于 [ \f\n\r\t\v]。 
+ \S           匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。 
+ \w           匹配包括下划线的任何单词字符。等价于'[A-Za-z0-9_]'。 
+ \W           匹配任何非单词字符。等价于 '[^A-Za-z0-9_]'。 
+ 
+ 
+ re.match与re.search的区别 
+re.match只匹配字符串的开始，如果字符串开始不符合正则表达式，则匹配失败，函数返回None；而re.search匹配整个字符串，直到找到一个匹配。
+Regular Expression Modifiers: Option Flags
+Regular expression literals may include an optional modifier to control various aspects of matching. The modifiers are specified as an optional flag. You can provide multiple modifiers using exclusive OR (|), as shown previously and may be represented by one of these 
+
+几个常见正则例子：
+匹配手机号
+
+phone_str = "hey my name is alex, and my phone number is 13651054607, please call me if you are pretty!"
+phone_str2 = "hey my name is alex, and my phone number is 18651054604, please call me if you are pretty!"
+
+m = re.search("(1)([358]\d{9})",phone_str2)
+if m:
+    print(m.group())
+
+匹配IP V4
+ip_addr = "inet 192.168.60.223 netmask 0xffffff00 broadcast 192.168.60.255"
+
+m = re.search("\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", ip_addr)
+
+print(m.group())
+分组匹配地址　　
+contactInfo = 'Oldboy School, Beijing Changping Shahe: 010-8343245'
+match = re.search(r'(\w+), (\w+): (\S+)', contactInfo) #分组
+"""
+match.group(1)
+  'Doe'
+  match.group(2)
+  'John'
+  match.group(3)
+  '555-1212'
+"""
+match = re.search(r'(?P&lt;last&gt;\w+), (?P&lt;first&gt;\w+): (?P&lt;phone&gt;\S+)', contactInfo)
+"""
+ &gt;&gt;&gt; match.group('last')
+  'Doe'
+  &gt;&gt;&gt; match.group('first')
+  'John'
+  &gt;&gt;&gt; match.group('phone')
+  '555-1212'
+"""
+匹配email
+email = "alex.li@126.com   http://www.oldboyedu.com"
+
+m = re.search(r"[0-9.a-z]{0,26}@[0-9.a-z]{0,20}.[0-9a-z]{0,8}", email)
+print(m.group())
+
