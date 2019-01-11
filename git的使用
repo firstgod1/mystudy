@@ -45,3 +45,5 @@ git checkout -b new_branch
 合并分支
 git merge new_branch
 
+创建远程仓库
+git remote add origin https://github.com/firstgod1/mystudy.git
