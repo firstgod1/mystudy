@@ -47,3 +47,6 @@ git merge new_branch
 
 绑定远程仓库
 git remote add origin https://github.com/firstgod1/mystudy.git
+
+查看已提交的状态
+git log 
