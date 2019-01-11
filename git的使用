@@ -1,0 +1,33 @@
+fork : git1 fork 了git2的仓库后 会自己生成一个 一模一样的仓库(复制/克隆)
+git status 查看状态
+git 工作区域
+
+git repository(git仓库)
+
+暂存区
+
+工作区 -> 暂存区 : git add hello.php  git add test.php 
+
+暂存区 -》 git仓库  git commit -m "提交描述" 
+
+1.设置用户名
+
+git config --global user.name 'firstgod1'
+
+2.设置用户名邮箱
+git config --global user.email '947006718@qq.com'
+
+3.查看设置
+git config --list
+
+一、在文件夹内初始化git
+git init 
+二、将文件提交到暂存区
+git add hello.php
+三、将暂存区文件提交到GitHub仓库
+git commit -m "提交描述" 
+
+删除
+rm 删除工作区文件
+git rm test.php 从Git中删除
+git commit -m '' 提交操作
