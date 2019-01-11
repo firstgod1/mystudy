@@ -50,3 +50,6 @@ git remote add origin https://github.com/firstgod1/mystudy.git
 
 查看已提交的状态
 git log 
+
+取消上一次的提交，并修改后重新提交
+git commit --amend
