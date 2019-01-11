@@ -51,5 +51,72 @@ git remote add origin https://github.com/firstgod1/mystudy.git
 查看已提交的状态
 git log 
 
-取消上一次的提交，并修改后重新提交
+取消上一次的提交，并将暂存区的东西重新提交
 git commit --amend
+
+拉取暂存区的文件并替换工作区的文件
+git checkout -- "filename"
+
+拉取最近的一次提交到版本库的文件到暂存区
+git reset HEAD index.php
+
+查看已提交的状态
+git log --oneline
+
+取消工作区的上次所有的修改
+git checkout -- 
+
+
+删除过程
+先将工作区的东西删除
+再通过 git add . 将暂存区的东西删除
+
+将工作区和暂存区的一起删除
+git rm index.html
+--catch 仅仅删除暂存区的文件
+
+将工作区和暂存区的文件都修改
+git mv 
+
+创建分支dev
+git branch dev
+查看分支git branch
+
+删除分支
+git branch -d dev
+
+改分支的名字
+git branch -m 'yuan'  'mudi'
+
+
+创建分支，并切换到分支
+git branch -b aa 
+
+和dev上的分支合并
+git merge dev
+
+
+
+git commit -lm ''
+
+查看分支的区别
+git diff 版本号1 版本号2
+
+和dev分支的比较
+git diff dev
+
+
+
+将两个分支的工作区封存并将工作区的修改撤销
+git stash
+查看封存的文件
+git stash list
+
+将封存的文件恢复
+git stash apply stash@{0}
+
+将封存的文件恢复并删除stash@{0}
+git stash pop stash@{0}
+
+将封存的文件删除stash@{0}
+git stash drop stash@{0}
