@@ -38,3 +38,6 @@ git clone  仓库地址
 3.将暂存区文件提交到本地仓库
 4.将本地仓库上传到远程仓库
 git push 
+
+转换到另个分支
+git checkout -b new_branch
