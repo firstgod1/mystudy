@@ -21,7 +21,7 @@ git config --global user.email '947006718@qq.com'
 git config --list
 
 一、在文件夹内初始化git
-git init 
+git  --bare  init
 二、将文件提交到暂存区
 git add hello.php
 三、将暂存区文件提交到GitHub仓库
