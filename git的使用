@@ -27,7 +27,14 @@ git add hello.php
 三、将暂存区文件提交到GitHub仓库
 git commit -m "提交描述" 
 
-删除
+删除本地仓库
 rm 删除工作区文件
 git rm test.php 从Git中删除
 git commit -m '' 提交操作
+
+1.克隆仓库到本地
+git clone  仓库地址
+2.将工作区文件提交到暂存区
+3.将暂存区文件提交到本地仓库
+4.将本地仓库上传到远程仓库
+git push 
