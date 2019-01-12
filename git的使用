@@ -157,3 +157,11 @@ git stash pop stash@{0}
 
 将封存的文件删除stash@{0}
 git stash drop stash@{0}
+
+
+回滚远程仓库版本
+首先在本地切换到到回退的指定版本
+git reset --hard 版本提交的id 
+或git reset --hard HEAD^  #回退到上个版本
+强制push到远程
+git push -f origin master
