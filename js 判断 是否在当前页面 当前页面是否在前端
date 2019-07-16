@@ -1,0 +1,35 @@
+1.使用visibilitychange
+
+
+document.addEventListener("visibilitychange", function() {
+    console.log(document.visibilityState);
+    if(document.visibilityState == "hidden") {
+        console.log('隐藏');
+    } else if (document.visibilityState == "visible") {
+        console.log('显示')
+    }
+});
+
+
+2.使用onblur 和 onfocus
+
+var count = 1;
+var interval_output = null;
+     
+function output_number() {
+    document.body.innerHTML += (count + " ");
+    count++;
+}
+     
+// window 失去焦点，停止输出
+window.onblur = function() {
+    clearInterval(interval_output);
+};
+     
+// window 每次获得焦点
+window.onfocus = function() {
+    // 每 1 秒在页面输出一个数
+    interval_output = setInterval(function() {
+        output_number();
+    }, 1000);
+}
