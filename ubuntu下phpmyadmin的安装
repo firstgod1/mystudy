@@ -1,0 +1,35 @@
+ 环境： ubuntu16 , php7 , nginx 1.10.3
+
+安装mysql 
+sudo apt install mysql-server mysql-client libmysqlclient-dev 
+安装nginx 
+sudo apt install nginx 
+安装php 
+sudo apt install php php-mysql php-fpm 
+下载phpmyadmin 
+cd /var/www 
+sudo wget https://files.phpmyadmin.net/phpMyAdmin/4.7.7/phpMyAdmin-4.7.7-all-languages.zip 
+unzip phpMyAdmin-4.7.7-all-languages.zip 
+mv phpMyAdmin-4.7.7-all-languages phpmyadmin
+
+修改nginx配置 
+sudo nano /etc/nginx/site-enabled/phpmyadmin 
+复制以下内容(注意php7.0-fpm.sock版本号要改成php的版本)
+
+
+server {
+ listen 8100;
+ root /var/www/phpmyadmin;
+ index index.php;
+
+ location ~ \.php$ {
+   include snippets/fastcgi-php.conf;
+   fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+ }
+}
+
+
+重启nginx 
+sudo service nginx restart
+
+访问http://127.0.0.1:8100使用
