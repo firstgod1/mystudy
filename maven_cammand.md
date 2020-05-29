@@ -7,4 +7,4 @@
  ### i.java 项目->打成jar包
  ### ii. web项目-》打成war包
 ## f) install: 发布项目到本地仓库，用在打jar包上，打成jar包可以被其他项目使用
-## d)tomcat:run 构建项目
+## g)tomcat:run 构建项目
